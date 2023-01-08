@@ -28,6 +28,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
 <!-- Styles -->
 <style>
@@ -70,11 +71,20 @@
             
               <!-- / header top left -->
               
-              <div class="aa-header-top-right">                
-                <div class="account-dropdown__footer">
+             
                 @if (Route::has('login'))                
-                @auth
-                    <a href="{{ url('/home') }}">Dashboard</a>                    
+                @auth              
+                <span style="font-size:14px"> 
+                                <a style="color:red" href="#" >
+                                   Hi, {{ Auth::user()->name }}
+                                </a>    
+                </span>              
+                <div class="aa-header-top-right">                
+                <div class="account-dropdown__footer">
+                    <a href="{{url('/showCart')}}" class="btn btn-outline-danger" style="font-size:14px">
+                      <i class="fas fa-shopping-cart"></i>
+                        Cart
+                    </a>
                     <button href="{{ route('logout') }}" class="btn btn-outline-danger" style="font-size:14px"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -84,6 +94,8 @@
                                     @csrf
                                 </form>
                 @else
+                <div class="aa-header-top-right">                
+                <div class="account-dropdown__footer">
                     <a href="{{ route('login') }}" class="btn btn-outline-danger" style="font-size:14px">Log in</a>
 
                     @if (Route::has('register'))

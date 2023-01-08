@@ -43,7 +43,10 @@ Route::get('/category/{id}', [HomeController::class, 'category']);
 Route::get('/product/{id}', [HomeController::class, 'product']);  
 
 Route::middleware(['auth', 'user-access:user'])->group(function () { 
-    Route::get('/home', [HomeController::class, 'index'])->name('home'); 
+    Route::get('/home', [HomeController::class, 'index'])->name('home');     
+    Route::post('/addToCart/{id}', [HomeController::class, 'addToCart']); 
+    Route::get('/showCart', [HomeController::class, 'showCart']);
+
 });
 /*------------------------------------------
 --------------------------------------------

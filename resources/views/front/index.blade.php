@@ -16,7 +16,7 @@
                   @foreach($home_categories as $list)
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                     <img src="{{asset('storage/media/1672483105.png')}}" alt="logo img" width="10%">
+                     <img src="{{asset('storage/media/1673004793.jpg')}}" alt="logo img" width="10%">
                       <div class="aa-prom-content">
                         <h4><a href="{{url('category/'.$list->id)}}">{{$list->category_name}}</a></h4>                        
                       </div>
@@ -66,9 +66,9 @@
                        @foreach($home_categories_product[$list->id] as $productArr)
                         <li>
                           <figure>                           
-                          <!-- <a class="aa-product-img" href="{{url('product/'.$productArr->id)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->product_name}}" style="width:10%"></a> -->
+                          <a class="aa-product-img" href="{{url('product/'.$productArr->id)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->product_name}}" style="width:10%"></a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->id)}}">{{$productArr->product_name}}</a></h4>                            
+                              <h4 ><a href="{{url('product/'.$productArr->id)}}">{{$productArr->product_name}}</a></h4>                            
                             </figcaption>
                           </figure>                          
                         </li>  

@@ -1,6 +1,13 @@
 @extends('front/layout')
+<div class="aa-header-top-right">
+                                            <a class="btn btn-outline-danger" href="{{url('/home')}}">
+                                            <i class="fas fa-home"></i>
+                                       Home
+                                    </a>                                   
+                                            </div>
 @section('page_title','Category')
 @section('container')
+
 <!-- Start header section -->
 <header id="aa-header">
     <!-- start header top  -->
@@ -14,11 +21,7 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                <div class="account-dropdown__footer">
-                                            <a class="dropdown-item" href="{{url('/home')}}">
-                                       Home
-                                    </a>                                   
-                                            </div>
+               
                   
 
                 </ul>

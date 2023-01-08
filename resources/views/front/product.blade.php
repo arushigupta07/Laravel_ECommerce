@@ -1,6 +1,8 @@
 @extends('front/layout')
 @section('page_title',$product[0]->product_name)
 @section('container')
+
+   
 <!-- Start header section -->
 <header id="aa-header">
     <!-- start header top  -->
@@ -18,7 +20,7 @@
                                             <a class="dropdown-item" href="{{url('/home')}}">
                                        Home
                                     </a>                                   
-                                            </div>                 
+                                            </div>               
 
                 </ul>
               </div>
@@ -27,6 +29,12 @@
         </div>
       </div>
     </div>
+    @if(session()->has('message'))
+<div class="alert alert-danger" style="mb-2">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+    {{session()->get('message')}};
+</div>
+@endif
     <!-- / header top  -->
   <!-- catg header banner section -->
   <!--<section id="aa-catg-head-banner">
@@ -114,7 +122,13 @@
                     </div>
                     @endif    
                     <div class="aa-prod-view-bottom">
-                     
+                     <form action="{{url('addToCart',$product[0]->id)}}" method="POST">
+
+                     @csrf 
+                     <input type="number" value="1"  class="form-control" name="quantity"
+                      placeholder="quantity" style="width:50px">
+                      <br>
+                      <input class="btn btn-danger" type="submit" value="Add to Cart">
                     </div>
                     <div id="add_to_cart_msg"></div>
                   </div>
@@ -131,7 +145,7 @@
               <div class="tab-content">
                
                  
-                   <h4>Add a review</h4>
+                   <!-- <h4>Add a review</h4>
                    <div class="aa-your-rating">
                      <p>Your Rating</p>
                      <select class="form-control" name="rating" required>
@@ -142,10 +156,10 @@
                       <option>Very Good</option>
                       <option>Fantastic</option>
                      </select>
-                   </div>
+                   </div> -->
                    <!-- review form -->
                    
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="message">Your Review</label>
                         <textarea class="form-control" rows="3"  name="review" required></textarea>
                       </div>
@@ -158,7 +172,7 @@
                  </div>
                 </div>            
               </div>
-            </div>
+            </div> -->
             <!-- Related product -->
             <div class="aa-product-related-item">
               <h3>Related Products</h3>

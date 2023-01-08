@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Front;
+use App\Models\Cart;
+use App\Models\Product;
 use Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,6 +37,10 @@ class HomeController extends Controller
         ->get();
         //dd($result['home_categories']);
 
+        // $user=auth()->user();
+        // $count=cart::where('user_name',$user->name)->count();
+        //dd($count);
+
         foreach($result['home_categories'] as $list){
             $result['home_categories_product'][$list->id]=
                 DB::table('products')
@@ -44,7 +51,7 @@ class HomeController extends Controller
                //dd($result['home_categories_product']);
 
 
-        return view('front/index',$result);
+        return view('front/index',['home_categories'=>$result['home_categories']]);
     }
     public function category(Request $request, $id){
         $sort='';
@@ -129,6 +136,36 @@ class HomeController extends Controller
             ->get();
     }   
         return view('front/product', $result);
+    }
+/**
+ * Undocumented function
+ *
+ * @param Request $request
+ * @param [type] $id
+ * @return void
+ */
+    public function addToCart(Request $request, $id){
+        if(Auth::id()){
+            $user=auth()->user();
+            $product=Product::find($id);
+            $cart=new cart;
+            $cart->user_name=$user->name;
+            $cart->product_name=$product->product_name;
+            $cart->quantity=$request->quantity;
+            $cart->save();
+            return redirect()->back()->with('message','Product Added to Cart Successfully');
+        }
+        else{
+            return redirect('auth/login');
+        }
+
+    }
+    public function showCart(){
+        $user=auth()->user();
+        $cart=cart::where('user_name',$user->name)->get();
+       //dd($cart);
+        return view('front/show_cart');
+        
     }
     public function adminHome()
     {

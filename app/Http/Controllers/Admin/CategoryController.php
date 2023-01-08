@@ -22,7 +22,7 @@ class CategoryController extends Controller
         return view('admin/category',$result);
     }    
     /**
-     * Undocumented function
+     * manageCategory function
      *
      * @param Request $request
      * @param string $id
@@ -32,6 +32,7 @@ class CategoryController extends Controller
      */
     public function manageCategory(Request $request,$id='')
     {
+        //route: add validation for id , required, integer data type
         if($id>0){
             $arr=Category::where(['id'=>$id])->get(); 
             $result['category_name']=$arr['0']->category_name;           
@@ -41,15 +42,17 @@ class CategoryController extends Controller
         else{
             $result['category_name']='';
             $result['id']=0;
-            $result['category']=DB::table('categories')->where(['status'=>1])->get();
-            }   
+            $result['category']=DB::table('categories')
+                                    ->where(['status'=>1])
+                                    ->get();
+        }   
         return view('admin/manage_category',$result);
-         // echo '<pre>';       
+        // echo '<pre>';       
         // print_r($result);
         // die();
     }
 /**
- * Undocumented function
+ * manageCategoryProcess function
  *
  * 
  * @param Request $request
